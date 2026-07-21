@@ -1,14 +1,25 @@
 import { cn } from "@/utils/cn";
 
-// Semantic section with consistent vertical rhythm + anchor id.
-export default function Section({ id, children, className = "", ...props }) {
+// Semantic section wrapper with consistent spacing and anchor offset.
+export default function Section({
+  id,
+  children,
+  className = "",
+  containerClassName = "",
+  ...props
+}) {
   return (
     <section
       id={id}
-      className={cn("relative z-10 scroll-mt-24 py-24 sm:py-32", className)}
+      className={cn(
+        "relative z-10 scroll-mt-24 py-24 sm:py-32",
+        className
+      )}
       {...props}
     >
-      <div className="container-x">{children}</div>
+      <div className={cn("container-x", containerClassName)}>
+        {children}
+      </div>
     </section>
   );
 }

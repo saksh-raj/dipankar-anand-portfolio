@@ -4,17 +4,29 @@ import path from "path";
 
 export default defineConfig({
   plugins: [react()],
+
   resolve: {
-    alias: { "@": path.resolve(__dirname, "./src") },
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
   },
+
   build: {
     target: "es2020",
+
     cssMinify: true,
+
+    sourcemap: false,
+
+    assetsInlineLimit: 4096,
+
+    chunkSizeWarningLimit: 1000,
+
     rollupOptions: {
       output: {
         manualChunks: {
-          motion: ["framer-motion"],
           vendor: ["react", "react-dom"],
+          motion: ["framer-motion"],
         },
       },
     },

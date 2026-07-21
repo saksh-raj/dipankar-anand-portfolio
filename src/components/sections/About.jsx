@@ -14,37 +14,50 @@ export default function About() {
         title="Engineering with intent."
       />
 
-      <div className="mt-14 grid gap-14 lg:grid-cols-[1.3fr_1fr]">
+      <div className="mt-14 grid gap-16 lg:grid-cols-[1.3fr_1fr] lg:items-start">
+        {/* Left */}
         <motion.div
           variants={stagger(0.12)}
           initial="hidden"
           whileInView="show"
           viewport={viewportOnce}
-          className="space-y-6"
+          className="space-y-7"
         >
           {about.paragraphs.map((p, i) => (
             <motion.p
               key={i}
               variants={fadeUp}
-              className="text-lg leading-relaxed text-secondary"
+              className="max-w-[68ch] text-lg leading-relaxed text-secondary"
             >
               {p}
             </motion.p>
           ))}
 
-          <motion.div variants={fadeUp} className="pt-4">
+          <motion.div variants={fadeUp} className="pt-6">
             <span className="eyebrow">Education</span>
-            <div className="mt-4 space-y-4">
-              {education.map((e, i) => (
+
+            <div className="mt-5 space-y-5">
+              {education.map((e) => (
                 <div
-                  key={i}
-                  className="flex flex-col gap-1 border-l border-line pl-4 sm:flex-row sm:items-baseline sm:justify-between"
+                  key={`${e.degree}-${e.period}`}
+                  className="flex flex-col gap-2 border-l border-line pl-5 transition-colors duration-300 hover:border-accent/40 sm:flex-row sm:items-baseline sm:justify-between"
                 >
                   <div>
-                    <p className="font-medium text-primary">{e.degree}</p>
-                    <p className="text-sm text-secondary">{e.school}</p>
+                    <h3 className="font-medium text-primary">
+                      {e.degree}
+                    </h3>
+
+                    <p className="text-sm text-secondary">
+                      {e.school}
+                    </p>
                   </div>
-                  <span className="font-mono text-xs text-muted">{e.period}</span>
+
+                  <time
+                    className="font-mono text-xs text-muted"
+                    dateTime={e.period}
+                  >
+                    {e.period}
+                  </time>
                 </div>
               ))}
             </div>
@@ -52,22 +65,31 @@ export default function About() {
         </motion.div>
 
         {/* Principles */}
-        <div className="space-y-4">
+        <div className="space-y-5">
           {about.principles.map((pr, i) => (
-            <Reveal key={pr.title} delay={i * 0.08}>
-              <div className="group rounded-xl2 border border-line bg-card p-6 transition-colors duration-500 hover:border-white/[0.14]">
+            <Reveal
+              key={pr.title}
+              delay={i * 0.08}
+            >
+              <motion.article
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.25 }}
+                className="group rounded-xl2 border border-line bg-card p-6 transition-all duration-500 hover:border-white/[0.16] hover:shadow-[0_18px_45px_-24px_rgba(0,0,0,0.45)]"
+              >
                 <div className="flex items-center gap-3">
                   <span className="font-mono text-xs text-accent">
-                    0{i + 1}
+                    {String(i + 1).padStart(2, "0")}
                   </span>
+
                   <h3 className="font-display text-lg text-primary">
                     {pr.title}
                   </h3>
                 </div>
+
                 <p className="mt-3 text-sm leading-relaxed text-secondary">
                   {pr.body}
                 </p>
-              </div>
+              </motion.article>
             </Reveal>
           ))}
         </div>

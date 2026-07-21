@@ -4,28 +4,47 @@ import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 const SIZE = 480;
 
-// Large, faint glow that trails the cursor. Desktop / fine-pointer only.
-// Animates transform (x/y) rather than left/top so it stays on the
-// compositor thread — no per-frame layout.
+// Premium cursor glow with GPU-friendly transforms.
 export default function CursorGlow() {
   const reduced = useReducedMotion();
   const [enabled, setEnabled] = useState(false);
+
   const x = useMotionValue(-SIZE);
   const y = useMotionValue(-SIZE);
-  const sx = useSpring(x, { stiffness: 120, damping: 22, mass: 0.6 });
-  const sy = useSpring(y, { stiffness: 120, damping: 22, mass: 0.6 });
+
+  const sx = useSpring(x, {
+    stiffness: 100,
+    damping: 24,
+    mass: 0.8,
+  });
+
+  const sy = useSpring(y, {
+    stiffness: 100,
+    damping: 24,
+    mass: 0.8,
+  });
 
   useEffect(() => {
     if (reduced) return;
-    if (!window.matchMedia("(pointer: fine)").matches) return;
+
+    const media = window.matchMedia("(pointer: fine)");
+
+    if (!media.matches) return;
+
     setEnabled(true);
 
     const move = (e) => {
       x.set(e.clientX - SIZE / 2);
       y.set(e.clientY - SIZE / 2);
     };
-    window.addEventListener("mousemove", move, { passive: true });
-    return () => window.removeEventListener("mousemove", move);
+
+    window.addEventListener("pointermove", move, {
+      passive: true,
+    });
+
+    return () => {
+      window.removeEventListener("pointermove", move);
+    };
   }, [reduced, x, y]);
 
   if (reduced || !enabled) return null;
@@ -40,7 +59,10 @@ export default function CursorGlow() {
         width: SIZE,
         height: SIZE,
         borderRadius: "9999px",
-        background: "radial-gradient(circle, rgba(34,211,238,0.05) 0%, transparent 60%)",
+        background:
+          "radial-gradient(circle, rgba(34,211,238,0.055) 0%, rgba(34,211,238,0.03) 35%, transparent 70%)",
+        filter: "blur(8px)",
+        willChange: "transform",
       }}
     />
   );

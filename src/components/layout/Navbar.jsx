@@ -16,20 +16,40 @@ export default function Navbar() {
 
   useScrollLock(open);
 
-  // Close the mobile menu on Escape.
+  // Close menu on Escape
   useEffect(() => {
     if (!open) return;
-    const onKey = (e) => e.key === "Escape" && setOpen(false);
+
+    const onKey = (e) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
+
+  // Close mobile menu when resizing to desktop
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth >= 768) {
+        setOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
 
   return (
     <>
       <motion.header
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+        transition={{
+          duration: 0.55,
+          ease: [0.22, 1, 0.36, 1],
+          delay: 0.1,
+        }}
         className={cn(
           "fixed inset-x-0 top-0 z-50 transition-all duration-500",
           scrolled ? "py-3" : "py-5"
@@ -39,24 +59,25 @@ export default function Navbar() {
           className={cn(
             "container-x flex items-center justify-between rounded-full transition-all duration-500",
             scrolled &&
-              "glass border border-line !max-w-[1080px] px-5 py-2.5 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.6)]"
+            "glass border border-line !max-w-[1080px] px-5 py-2.5 shadow-[0_12px_48px_-16px_rgba(0,0,0,0.55)]"
           )}
         >
           <a
             href="#top"
-            className="font-display text-lg font-medium tracking-tightest text-primary"
+            className="rounded-md font-display text-lg font-medium tracking-tightest text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             {profile.firstName}
             <span className="text-accent">.</span>
           </a>
 
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden items-center gap-1 md:flex">
             {NAV_LINKS.map((link) => (
               <a
                 key={link.id}
                 href={`#${link.id}`}
+                aria-current={active === link.id ? "page" : undefined}
                 className={cn(
-                  "relative rounded-full px-4 py-2 text-sm transition-colors duration-300",
+                  "relative rounded-full px-4 py-2 text-sm transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                   active === link.id
                     ? "text-primary"
                     : "text-secondary hover:text-primary"
@@ -66,9 +87,14 @@ export default function Navbar() {
                   <motion.span
                     layoutId="nav-pill"
                     className="absolute inset-0 -z-10 rounded-full bg-white/[0.06]"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 320,
+                      damping: 28,
+                    }}
                   />
                 )}
+
                 {link.label}
               </a>
             ))}
@@ -76,14 +102,14 @@ export default function Navbar() {
 
           <a
             href={profile.socials.email}
-            className="hidden md:inline-flex items-center rounded-full border border-line px-4 py-2 text-sm text-primary transition-colors hover:border-white/25 hover:bg-white/[0.03]"
+            className="hidden md:inline-flex items-center rounded-full border border-line px-4 py-2 text-sm text-primary transition-colors hover:border-white/25 hover:bg-white/[0.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             Get in touch
           </a>
 
           <button
             onClick={() => setOpen(true)}
-            className="md:hidden grid h-10 w-10 place-items-center rounded-full border border-line text-primary"
+            className="grid h-10 w-10 place-items-center rounded-full border border-line text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background md:hidden"
             aria-label="Open menu"
             aria-expanded={open}
             aria-controls="mobile-menu"
@@ -92,7 +118,6 @@ export default function Navbar() {
           </button>
         </div>
       </motion.header>
-
       <AnimatePresence>
         {open && (
           <motion.div
@@ -102,9 +127,10 @@ export default function Navbar() {
             exit={{ opacity: 0 }}
           >
             <div
-              className="absolute inset-0 bg-black/70 backdrop-blur-md"
+              className="absolute inset-0 bg-black/60 backdrop-blur-xl"
               onClick={() => setOpen(false)}
             />
+
             <motion.nav
               id="mobile-menu"
               role="dialog"
@@ -114,16 +140,17 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.5, ease }}
-              className="absolute right-0 top-0 flex h-full w-[82%] max-w-sm flex-col border-l border-line bg-surface p-8"
+              className="absolute right-0 top-0 flex h-full w-[80%] max-w-sm flex-col border-l border-line bg-surface p-8"
             >
               <div className="flex items-center justify-between">
                 <span className="font-display text-lg tracking-tightest">
                   {profile.firstName}
                   <span className="text-accent">.</span>
                 </span>
+
                 <button
                   onClick={() => setOpen(false)}
-                  className="grid h-10 w-10 place-items-center rounded-full border border-line"
+                  className="grid h-10 w-10 place-items-center rounded-full border border-line focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                   aria-label="Close menu"
                 >
                   <X size={18} />
@@ -135,18 +162,22 @@ export default function Navbar() {
                   <motion.a
                     key={link.id}
                     href={`#${link.id}`}
+                    aria-current={active === link.id ? "page" : undefined}
                     onClick={() => setOpen(false)}
                     initial={{ opacity: 0, x: 24 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.1 + i * 0.06 }}
                     className={cn(
-                      "flex items-baseline gap-3 border-b border-line py-4 text-2xl font-display tracking-tightest transition-colors",
-                      active === link.id ? "text-primary" : "text-secondary"
+                      "flex items-baseline gap-3 border-b border-line py-4 text-2xl font-display tracking-tightest transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+                      active === link.id
+                        ? "text-primary"
+                        : "text-secondary hover:text-primary"
                     )}
                   >
                     <span className="font-mono text-xs text-muted">
                       0{i + 1}
                     </span>
+
                     {link.label}
                   </motion.a>
                 ))}
@@ -155,7 +186,7 @@ export default function Navbar() {
               <a
                 href={profile.socials.email}
                 onClick={() => setOpen(false)}
-                className="mt-auto inline-flex items-center justify-center rounded-full bg-accent px-5 py-3 text-sm font-medium text-black"
+                className="mt-auto inline-flex items-center justify-center rounded-full bg-accent px-5 py-3 text-sm font-medium text-black transition-transform duration-200 hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 Get in touch
               </a>

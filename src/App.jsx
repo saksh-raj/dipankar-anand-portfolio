@@ -14,36 +14,41 @@ import Experience from "@/components/sections/Experience";
 import Projects from "@/components/sections/Projects";
 import Achievements from "@/components/sections/Achievements";
 import Contact from "@/components/sections/Contact";
+import SEO from "@/components/seo/SEO";
 
 export default function App() {
   useLenis();
 
   return (
-    <ToastProvider>
-      {/* Skip link for keyboard users */}
-      <a
-        href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[110] focus:rounded-full focus:bg-accent focus:px-5 focus:py-2.5 focus:text-sm focus:font-medium focus:text-black"
-      >
-        Skip to content
-      </a>
+    <>
+      <SEO />
 
-      <Background />
-      <CursorGlow />
-      <ScrollProgress />
-      <Navbar />
+      <ToastProvider>
+        {/* Skip link for keyboard users */}
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[110] focus:rounded-full focus:bg-accent focus:px-5 focus:py-2.5 focus:text-sm focus:font-medium focus:text-black"
+        >
+          Skip to content
+        </a>
 
-      <main id="main" className="relative">
-        <Hero />
-        <About />
-        <Skills />
-        <Experience />
-        <Projects />
-        <Achievements />
-        <Contact />
-      </main>
+        <Background />
+        <CursorGlow />
+        <ScrollProgress />
+        <Navbar />
 
-      <Footer />
-    </ToastProvider>
+        <main id="main" className="relative">
+          <Hero />
+          <About />
+          <Skills />
+          <Experience />
+          <Projects />
+          <Achievements />
+          <Contact />
+        </main>
+
+        <Footer />
+      </ToastProvider>
+    </>
   );
 }

@@ -1,4 +1,4 @@
-import { useCallback, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { cn } from "@/utils/cn";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
@@ -11,7 +11,7 @@ const VARIANTS = {
   ghost: "text-secondary hover:text-primary",
 };
 
-// A button/link that subtly follows the cursor. Renders <a> if href given.
+// A button/link that subtly follows the cursor. Renders <a> if href is provided.
 export default function MagneticButton({
   children,
   href,
@@ -23,17 +23,32 @@ export default function MagneticButton({
 }) {
   const ref = useRef(null);
   const reduced = useReducedMotion();
+
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  const sx = useSpring(x, { stiffness: 220, damping: 18 });
-  const sy = useSpring(y, { stiffness: 220, damping: 18 });
+
+  const sx = useSpring(x, {
+    stiffness: 180,
+    damping: 20,
+  });
+
+  const sy = useSpring(y, {
+    stiffness: 180,
+    damping: 20,
+  });
 
   const onMove = useCallback(
     (e) => {
       if (reduced || !ref.current) return;
-      const r = ref.current.getBoundingClientRect();
-      x.set((e.clientX - (r.left + r.width / 2)) * strength);
-      y.set((e.clientY - (r.top + r.height / 2)) * strength);
+
+      if (e.pointerType === "touch") return;
+
+      const rect = ref.current.getBoundingClientRect();
+
+      const factor = Math.min(Math.max(strength, 0), 0.6);
+
+      x.set((e.clientX - (rect.left + rect.width / 2)) * factor);
+      y.set((e.clientY - (rect.top + rect.height / 2)) * factor);
     },
     [reduced, strength, x, y]
   );
@@ -43,19 +58,28 @@ export default function MagneticButton({
     y.set(0);
   }, [x, y]);
 
+  useEffect(() => {
+    window.addEventListener("blur", reset);
+    return () => window.removeEventListener("blur", reset);
+  }, [reset]);
+
   const Tag = href ? motion.a : motion.button;
 
   return (
     <Tag
+      whileTap={{
+        scale: 0.98,
+        transition: { duration: 0.08 }
+      }}
       ref={ref}
       href={href}
       type={href ? undefined : type || "button"}
-      onMouseMove={onMove}
-      onMouseLeave={reset}
+      onPointerMove={onMove}
+      onPointerLeave={reset}
       style={{ x: sx, y: sy }}
       className={cn(
-        "group relative inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm transition-[background-color,border-color,box-shadow,color] duration-300 will-change-transform",
-        VARIANTS[variant],
+        "group relative inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm transition-[background-color,border-color,box-shadow,color] duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+        VARIANTS[variant] ?? VARIANTS.primary,
         className
       )}
       {...props}
