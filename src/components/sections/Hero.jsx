@@ -122,7 +122,7 @@ export default function Hero() {
                 <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-card to-surface">
                   <span className="font-display text-6xl text-white/10">DA</span>
                   <span className="font-mono text-[10px] uppercase tracking-eyebrow text-muted">
-                    add /public/profile.jpg
+                    Full Stack Developer
                   </span>
                 </div>
               )}
