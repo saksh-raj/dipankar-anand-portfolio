@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 
 const SITE_NAME = "Dipankar Anand";
-const SITE_URL = "https://dipankaranand.dev";
+const SITE_URL = "https://dipankar-anand-portfolio.vercel.app/";
 const DEFAULT_IMAGE = `${SITE_URL}/og-image.jpg`;
 
 export default function SEO({
