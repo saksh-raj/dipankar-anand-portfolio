@@ -119,7 +119,7 @@ export default function Contact() {
               className="transition-transform duration-300 group-hover:translate-y-0.5"
             />
 
-            Download résumé
+            Download Resume
           </a>
         </motion.div>
 

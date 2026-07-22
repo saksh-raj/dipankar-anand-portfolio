@@ -25,40 +25,34 @@ npm run preview  # preview the build
 
 > The `@/` import alias points at `src/` (configured in `vite.config.js`).
 
-## ✍️ Fill in your content
+## Content
 
-All real content lives in `src/data/`. Search the codebase for `[PLACEHOLDER]`
-and replace each one. **No professional experience was invented** — the data
-files are scaffolding for your real details.
+All content lives in `src/data/` and reflects Dipankar Anand's real
+professional history (sourced from LinkedIn — nothing invented).
 
-| File | What to edit |
+| File | What it holds |
 | --- | --- |
-| `src/data/profile.js` | Name, role, tagline, email, socials, résumé + photo paths, hero stats |
+| `src/data/profile.js` | Name, role, tagline, email, socials, resume + photo paths, hero stats |
 | `src/data/about.js` | Story paragraphs, principles, education |
-| `src/data/experience.js` | Roles, companies, dates, achievements, tech (most recent first) |
+| `src/data/experience.js` | Roles, companies, dates, achievements, tech (most recent first). A company may hold a single role or a `roles[]` array for multi-title tenures (e.g. Info Edge) |
 | `src/data/skills.js` | Skill groups by category |
-| `src/data/projects.js` | Case studies: problem, solution, features, links, screenshots |
-| `src/data/achievements.js` | Certifications, awards, hackathons, OSS |
 
 ### Assets to add in `/public`
 
 - `profile.jpg` — professional portrait (4:5 works best). A graceful fallback
   renders if it's missing.
-- `resume.pdf` — linked from the hero and contact CTAs.
-- `projects/*.png` — project screenshots (16:10). Set the `image` field per
-  project; a generated gradient placeholder shows when `image` is `null`.
-- `og-image.png` — social share preview (referenced in `index.html`).
+- `resume.pdf` — linked from the navbar, hero and contact CTAs.
+- `og-image.jpg` — social share preview (referenced in `index.html`).
 
 ## Structure
 
 ```
 src/
   components/
-    layout/     Navbar, Footer, Loader, Background, CursorGlow, ScrollProgress
-    sections/   Hero, About, Skills, Experience, Projects, ProjectCard,
-                Achievements, Contact
+    layout/     Navbar, Footer, Background, CursorGlow, ScrollProgress
+    sections/   Hero, About, Skills, Experience, Contact
     ui/         Section, SectionHeader, Reveal, MagneticButton, Card,
-                Counter, FilterPills, TechTag, Socials, Toast
+                Counter, FilterPills, TechTag, Socials, Monogram, Toast
   hooks/        useLenis, useActiveSection, useScrollState, useReducedMotion,
                 useCountUp, useScrollLock
   utils/        motion (variants), cn
@@ -82,6 +76,3 @@ Change the accent everywhere from one place — `tailwind.config.js` →
 `globals.css`, `Background.jsx`, and `CursorGlow.jsx` mirror it; update those to
 match if you switch hues.
 
----
-
-Built with React · Vite · Framer Motion.

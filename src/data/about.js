@@ -1,33 +1,34 @@
-// ─── ABOUT ─── Replace copy with the real professional story. ───
+// ─── ABOUT ─── Backend-focused story, grounded in the real profile:
+// 4.5+ years across Info Edge, Dream11 and Flyra, working on
+// large-scale search, high-throughput services and distributed systems.
 
 export const about = {
-  // 2–3 short paragraphs. Keep it in first person, honest, specific.
   paragraphs: [
-    "I'm a full stack developer who cares about the whole path a feature travels — from the data model, through the API, to the last pixel of the interface. I like the parts most people skip: the error states, the empty states, the moment something loads.",
-    "My work sits at the intersection of engineering and craft. I want systems that are simple to reason about and products that feel considered. Fast, accessible, and quietly reliable.", // [PLACEHOLDER — personalize]
-    "Outside of shipping, I spend time reading source code, refining my tooling, and learning whatever the current project demands.", // [PLACEHOLDER]
+    "I'm a backend software engineer with 4.5+ years designing and implementing complex, high-scale systems in fast-paced, cross-functional teams. I care about the whole path a request travels — from the data model, through the service layer, to a response that's fast and correct under real production load.",
+    "Most of my work lives in distributed backends: search platforms serving millions of records, high-throughput APIs, and services glued together with Kafka and RabbitMQ. I've built with Java, Vert.x and Spring Boot on top of MySQL, Aerospike, MongoDB and Elasticsearch — migrating legacy flows to reliable, maintainable services and cutting latency where it matters.",
+    "I'm committed to writing clean, scalable code, and I thrive on learning new things and taking on hard problems — the edge cases, the retries, and the moments a system is stretched thin.",
   ],
-  // What makes him unique — 3 crisp differentiators.
   principles: [
     {
-      title: "End to end ownership",
-      body: "Comfortable across the stack — schema design to deploy — so features ship whole, not handed off in fragments.",
+      title: "Systems that hold up",
+      body: "APIs and services designed for correctness first — clear contracts, sane failure modes, and behaviour that's easy to reason about at scale.",
     },
     {
       title: "Performance as a feature",
-      body: "Bundle size, query time, and perceived speed are treated as product requirements, not afterthoughts.",
+      body: "Query time, throughput, and latency are treated as product requirements. Optimising search from PHP/Perl flows to Elasticsearch cut response time ~40%.",
     },
     {
-      title: "Design-aware engineering",
-      body: "Fluent enough in design to build interfaces that respect spacing, motion, and hierarchy.",
+      title: "Ownership end to end",
+      body: "Comfortable from schema design to deploy — modelling data, wiring up messaging, and shipping backend features whole: tested, observable, dependable.",
     },
   ],
 };
 
+// Education — from the LinkedIn profile.
 export const education = [
   {
-    school: "[PLACEHOLDER — University / College]",
-    degree: "[PLACEHOLDER — Degree, Field]",
-    period: "[Year — Year]",
+    school: "Indian Institute of Information Technology, Kalyani",
+    degree: "B.Tech — Computer Science",
+    period: "2017 — 2021",
   },
 ];

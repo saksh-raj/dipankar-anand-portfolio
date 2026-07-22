@@ -1,34 +1,35 @@
-// ─── SKILLS ─── Grouped by category. Trim/extend to match reality. ───
+// ─── SKILLS ─── Grouped professionally, sourced from the LinkedIn
+// profile (Key Skills + per-role skill tags). No inflated entries.
 
 export const skillGroups = [
   {
-    id: "frontend",
-    label: "Frontend",
-    items: ["React", "Next.js", "TypeScript", "JavaScript", "Tailwind CSS", "Framer Motion", "Redux", "HTML/CSS"],
+    id: "languages",
+    label: "Languages",
+    items: ["Java", "C++", "Python", "SQL"],
   },
   {
     id: "backend",
-    label: "Backend",
-    items: ["Node.js", "Express", "REST APIs", "GraphQL", "Python", "Java", "WebSockets"],
+    label: "Backend & Frameworks",
+    items: ["Spring Boot", "Vert.x", "REST APIs", "Microservices", "WebSockets"],
   },
   {
     id: "databases",
-    label: "Databases",
-    items: ["PostgreSQL", "MongoDB", "MySQL", "Redis", "Prisma"],
+    label: "Databases & Cache",
+    items: ["MySQL", "Aerospike", "MongoDB", "Elasticsearch", "Redis", "ArangoDB"],
   },
   {
-    id: "cloud",
-    label: "Cloud",
-    items: ["AWS", "Vercel", "Cloudflare", "Firebase"],
+    id: "messaging",
+    label: "Messaging",
+    items: ["Apache Kafka", "RabbitMQ"],
   },
   {
-    id: "devops",
-    label: "DevOps",
-    items: ["Docker", "CI/CD", "GitHub Actions", "Nginx", "Linux"],
+    id: "engineering",
+    label: "Engineering",
+    items: ["Systems Design", "Data Structures", "Algorithms", "Performance Tuning"],
   },
   {
     id: "tools",
     label: "Tools",
-    items: ["Git", "Figma", "Postman", "Jest", "Vite", "Webpack"],
+    items: ["Git", "GitHub", "Flask"],
   },
 ];

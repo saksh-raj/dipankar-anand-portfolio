@@ -7,7 +7,7 @@ import { stagger, fadeUp, viewportOnce } from "@/utils/motion";
 
 export default function About() {
   return (
-    <Section id="about">
+    <Section id="about" className="section-blend">
       <SectionHeader
         index="01"
         eyebrow="About"

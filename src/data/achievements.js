@@ -1,28 +1,18 @@
-// ─── ACHIEVEMENTS ─── Certifications, awards, OSS, hackathons, milestones. ───
+// ─── ACHIEVEMENTS ─── Certifications, awards, milestones.
+// No specific certifications/awards were supplied — entries are marked
+// TODO. If none exist, this section is safely hidden (see Achievements.jsx).
 
 export const achievements = [
   {
     type: "Certification",
-    title: "[PLACEHOLDER — Certification name]",
-    issuer: "[PLACEHOLDER — Issuer]",
-    year: "20XX",
-  },
-  {
-    type: "Hackathon",
-    title: "[PLACEHOLDER — Hackathon / result]",
-    issuer: "[PLACEHOLDER — Organizer]",
-    year: "20XX",
-  },
-  {
-    type: "Open Source",
-    title: "[PLACEHOLDER — Contribution / project]",
-    issuer: "[PLACEHOLDER — Repo / org]",
+    title: "TODO — Certification name",
+    issuer: "TODO — Issuer",
     year: "20XX",
   },
   {
     type: "Award",
-    title: "[PLACEHOLDER — Award]",
-    issuer: "[PLACEHOLDER — Body]",
+    title: "TODO — Award / recognition",
+    issuer: "TODO — Body",
     year: "20XX",
   },
 ];

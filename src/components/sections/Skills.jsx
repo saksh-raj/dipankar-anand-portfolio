@@ -41,7 +41,7 @@ export default function Skills() {
   return (
     <Section
       id="skills"
-      className="bg-surface/40"
+      className="section-blend"
     >
       <SectionHeader
         index="02"

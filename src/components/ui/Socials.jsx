@@ -1,9 +1,8 @@
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Linkedin, Mail } from "lucide-react";
 import { profile } from "@/data/profile";
 import { cn } from "@/utils/cn";
 
 const links = [
-  { icon: Github, href: profile.socials.github, label: "GitHub" },
   { icon: Linkedin, href: profile.socials.linkedin, label: "LinkedIn" },
   { icon: Mail, href: profile.socials.email, label: "Email" },
 ];

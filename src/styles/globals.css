@@ -74,6 +74,59 @@ body {
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
   }
+
+  /*
+   * Soft, edge-masked surface tint for a section. Replaces hard
+   * `bg-surface/40` blocks so sections melt into one another instead
+   * of starting/ending with a visible seam. The tint fades to zero at
+   * the top and bottom, so the boundary between sections is a gradient,
+   * not an edge. The mask is intentionally wide (fades over ~34%) so the
+   * transition reads as one continuous surface rather than a panel.
+   */
+  .section-blend {
+    position: relative;
+    isolation: isolate;
+  }
+  .section-blend::before {
+    content: "";
+    position: absolute;
+    inset: -8% 0;
+    z-index: -1;
+    pointer-events: none;
+    background: rgba(19, 19, 23, 0.42);
+    -webkit-mask-image: linear-gradient(
+      180deg,
+      transparent 0%,
+      #000 34%,
+      #000 66%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      180deg,
+      transparent 0%,
+      #000 34%,
+      #000 66%,
+      transparent 100%
+    );
+  }
+
+  /*
+   * Continuous vertical wash that sits behind the whole page content and
+   * flows across every section boundary. Because it spans the full main
+   * column (not per-section), scrolling reads as one canvas — the light
+   * gently shifts warm→cool→warm rather than resetting at each seam.
+   */
+  .flow-wash {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(120% 42% at 50% 0%, rgba(34, 211, 238, 0.05), transparent 60%),
+      radial-gradient(90% 40% at 12% 32%, rgba(99, 102, 241, 0.045), transparent 55%),
+      radial-gradient(90% 40% at 88% 62%, rgba(168, 85, 247, 0.04), transparent 55%),
+      radial-gradient(110% 40% at 50% 100%, rgba(34, 211, 238, 0.04), transparent 60%);
+  }
 }
 
 /* Focus states */

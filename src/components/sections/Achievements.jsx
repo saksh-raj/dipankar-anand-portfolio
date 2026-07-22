@@ -13,16 +13,23 @@ const iconFor = {
 };
 
 export default function Achievements() {
+  // Only render entries that have real content — hides TODO scaffolding.
+  const items = achievements.filter(
+    (a) => a.title && !a.title.startsWith("TODO")
+  );
+
+  if (items.length === 0) return null;
+
   return (
-    <Section id="achievements" className="bg-surface/40">
+    <Section id="achievements" className="section-blend">
       <SectionHeader
-        index="05"
+        index="04"
         eyebrow="Recognition"
         title="Certifications & wins."
       />
 
       <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {achievements.map((a, i) => {
+        {items.map((a, i) => {
           const Icon = iconFor[a.type] || Award;
           return (
             <Reveal key={i} delay={(i % 4) * 0.06}>

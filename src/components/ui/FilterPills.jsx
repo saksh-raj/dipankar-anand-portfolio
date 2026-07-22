@@ -3,7 +3,7 @@ import { cn } from "@/utils/cn";
 
 /**
  * A row of pill buttons with a shared animated highlight that slides
- * between the active option. Used for skill categories and project filters.
+ * between the active option. Used for skill categories.
  *
  * @param {Array<{id:string,label:string}>} options
  * @param {string} value        currently active id

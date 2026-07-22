@@ -1,19 +1,19 @@
 import { Helmet } from "react-helmet-async";
 
 const SITE_NAME = "Dipankar Anand";
-const SITE_URL = "https://dipankar-anand-portfolio.vercel.app/";
+const SITE_URL = "https://dipankaranand.dev";
 const DEFAULT_IMAGE = `${SITE_URL}/og-image.jpg`;
 
 export default function SEO({
-  title = `${SITE_NAME} | Full Stack Developer`,
+  title = `${SITE_NAME} | Backend Software Engineer`,
   description =
-    "Full Stack Developer specializing in React, Spring Boot, Java, scalable backend systems and modern web applications.",
+    "Backend Software Engineer specializing in Java, Spring Boot, scalable APIs, distributed systems and reliable backend services.",
   image = DEFAULT_IMAGE,
   url = SITE_URL,
   type = "website",
   robots = "index,follow,max-image-preview:large",
   keywords =
-    "Dipankar Anand, Full Stack Developer, React Developer, Spring Boot Developer, Java Developer, Portfolio, Web Developer",
+    "Dipankar Anand, Backend Software Engineer, Backend Developer, Spring Boot Developer, Java Developer, API Developer, Portfolio",
 }) {
   const canonical = url.startsWith("http")
     ? url

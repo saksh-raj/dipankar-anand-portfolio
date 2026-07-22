@@ -1,33 +1,30 @@
 // ─────────────────────────────────────────────────────────────
-//  PROFILE  — Primary source: LinkedIn (dipankar-anand)
-//  NOTE: LinkedIn could not be auto-fetched. Fields marked
-//  [PLACEHOLDER] should be replaced with the real profile data.
-//  Nothing here invents professional experience.
+//  PROFILE  — Dipankar Anand
+//  Sourced from the LinkedIn profile. Real, verifiable details only.
 // ─────────────────────────────────────────────────────────────
 
 export const profile = {
   name: "Dipankar Anand",
   firstName: "Dipankar",
-  role: "Full Stack Developer",
-  // A short, human intro. Rewrite in his own voice.
+  role: "Backend Software Engineer",
   tagline:
-    "I build fast, reliable, and thoughtfully-crafted software — from resilient APIs to interfaces people actually enjoy using.",
-  location: "India", // [PLACEHOLDER — confirm]
+    "I build fast, reliable backend systems — resilient APIs, well-modelled data, and services that stay calm under load.",
+  location: "India",
   availability: "Open to select opportunities",
-  email: "dipankar@example.com", // [PLACEHOLDER — real email]
-  resumeUrl: "/resume.pdf", // [PLACEHOLDER — drop resume.pdf into /public]
-  photo: "/profile.jpg", // [PLACEHOLDER — add professional photo to /public]
+  email: "getdipankaranand@gmail.com",
+  resumeUrl: "/resume.pdf", // drop resume.pdf into /public
+  photo: "/profile.jpg",
 
   socials: {
-    github: "https://github.com/dipankar-anand", // [PLACEHOLDER — confirm handle]
     linkedin: "https://www.linkedin.com/in/dipankar-anand/",
-    email: "mailto:dipankar@example.com", // [PLACEHOLDER]
+    email: "mailto:getdipankaranand@gmail.com",
   },
 };
 
-// Short stat strip under the hero. Replace with real, verifiable numbers.
+// Short stat strip under the hero. Backend-appropriate, grounded in the
+// real profile — no inflated numbers.
 export const stats = [
-  { value: "5+", label: "Years building" }, // [PLACEHOLDER]
-  { value: "20+", label: "Projects shipped" }, // [PLACEHOLDER]
-  { value: "12+", label: "Technologies" }, // [PLACEHOLDER]
+  { value: "4.5+", label: "Years building" },
+  { value: "15+", label: "Technologies" },
+  { value: "6", label: "Companies shipped with" },
 ];

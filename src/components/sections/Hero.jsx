@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Download, MousePointer2 } from "lucide-react";
+import { ArrowUpRight, Download } from "lucide-react";
 import { profile, stats } from "@/data/profile";
-import { stagger, fadeUp, ease } from "@/utils/motion";
+import { stagger, fadeUp } from "@/utils/motion";
 import MagneticButton from "@/components/ui/MagneticButton";
 import Socials from "@/components/ui/Socials";
 import Counter from "@/components/ui/Counter";
@@ -64,8 +64,8 @@ export default function Hero() {
               variants={fadeUp}
               className="mt-9 flex flex-wrap items-center gap-4"
             >
-              <MagneticButton href="#projects" variant="primary">
-                View projects
+              <MagneticButton href="#contact" variant="primary">
+                Get in touch
                 <ArrowUpRight size={16} />
               </MagneticButton>
               <MagneticButton
@@ -122,7 +122,7 @@ export default function Hero() {
                 <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-card to-surface">
                   <span className="font-display text-6xl text-white/10">DA</span>
                   <span className="font-mono text-[10px] uppercase tracking-eyebrow text-muted">
-                    Full Stack Developer
+                    Backend Software Engineer
                   </span>
                 </div>
               )}
@@ -132,24 +132,6 @@ export default function Hero() {
           </motion.div>
         </motion.div>
       </div>
-
-      {/* Scroll indicator */}
-      <motion.a
-        aria-label="Scroll to About section"
-        href="#about"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.9, duration: 0.8, ease }}
-        className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 items-center gap-2 text-xs uppercase tracking-eyebrow text-muted md:flex"
-      >
-        <MousePointer2 size={13} />
-        <span>Scroll</span>
-        <motion.span
-          className="block h-8 w-px bg-gradient-to-b from-accent to-transparent"
-          animate={{ scaleY: [0.3, 1, 0.3], originY: 0 }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-        />
-      </motion.a>
     </section>
   );
 }

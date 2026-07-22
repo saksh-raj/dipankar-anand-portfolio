@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 import { NAV_LINKS, SECTION_IDS } from "@/constants/nav";
 import { profile } from "@/data/profile";
+import Monogram from "@/components/ui/Monogram";
 import { useScrolled } from "@/hooks/useScrollState";
 import { useActiveSection } from "@/hooks/useActiveSection";
 import { useScrollLock } from "@/hooks/useScrollLock";
@@ -64,10 +65,10 @@ export default function Navbar() {
         >
           <a
             href="#top"
-            className="rounded-md font-display text-lg font-medium tracking-tightest text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            aria-label="Dipankar Anand — home"
+            className="rounded-lg transition-opacity duration-300 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
-            {profile.firstName}
-            <span className="text-accent">.</span>
+            <Monogram />
           </a>
 
           <nav className="hidden items-center gap-1 md:flex">
@@ -100,12 +101,26 @@ export default function Navbar() {
             ))}
           </nav>
 
-          <a
-            href={profile.socials.email}
-            className="hidden md:inline-flex items-center rounded-full border border-line px-4 py-2 text-sm text-primary transition-colors hover:border-white/25 hover:bg-white/[0.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-          >
-            Get in touch
-          </a>
+          <div className="hidden items-center gap-1.5 md:flex">
+            <a
+              href={profile.resumeUrl}
+              download
+              className="rounded-full px-3.5 py-2 text-sm text-secondary transition-colors duration-300 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            >
+              Resume
+            </a>
+
+            <a
+              href={profile.socials.email}
+              className="group inline-flex items-center gap-1.5 rounded-full bg-accent px-5 py-2 text-sm font-medium text-black shadow-[0_8px_30px_-8px_rgba(34,211,238,0.45)] transition-[transform,box-shadow] duration-300 hover:scale-[1.02] hover:shadow-[0_10px_44px_-8px_rgba(34,211,238,0.65)] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            >
+              Get in touch
+              <ArrowUpRight
+                size={15}
+                className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
+            </a>
+          </div>
 
           <button
             onClick={() => setOpen(true)}
@@ -143,10 +158,7 @@ export default function Navbar() {
               className="absolute right-0 top-0 flex h-full w-[80%] max-w-sm flex-col border-l border-line bg-surface p-8"
             >
               <div className="flex items-center justify-between">
-                <span className="font-display text-lg tracking-tightest">
-                  {profile.firstName}
-                  <span className="text-accent">.</span>
-                </span>
+                <Monogram />
 
                 <button
                   onClick={() => setOpen(false)}
@@ -183,13 +195,25 @@ export default function Navbar() {
                 ))}
               </div>
 
-              <a
-                href={profile.socials.email}
-                onClick={() => setOpen(false)}
-                className="mt-auto inline-flex items-center justify-center rounded-full bg-accent px-5 py-3 text-sm font-medium text-black transition-transform duration-200 hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-              >
-                Get in touch
-              </a>
+              <div className="mt-auto flex flex-col gap-3">
+                <a
+                  href={profile.resumeUrl}
+                  download
+                  onClick={() => setOpen(false)}
+                  className="inline-flex items-center justify-center rounded-full border border-line px-5 py-3 text-sm text-primary transition-colors duration-200 hover:border-white/25 hover:bg-white/[0.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                >
+                  Resume
+                </a>
+
+                <a
+                  href={profile.socials.email}
+                  onClick={() => setOpen(false)}
+                  className="inline-flex items-center justify-center gap-1.5 rounded-full bg-accent px-5 py-3 text-sm font-medium text-black transition-transform duration-200 hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                >
+                  Get in touch
+                  <ArrowUpRight size={15} />
+                </a>
+              </div>
             </motion.nav>
           </motion.div>
         )}
